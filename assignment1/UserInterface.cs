@@ -146,13 +146,11 @@ namespace assignment1
         private void displayMenu()
         {
             Console.WriteLine();
-            Console.WriteLine("What would you like to do?");
-            Console.WriteLine();
-            Console.WriteLine("1. Load Wine List From CSV");
-            Console.WriteLine("2. Print The Entire List Of Items");
-            Console.WriteLine("3. Search For An Item");
-            Console.WriteLine("4. Add New Item To The List");
-            Console.WriteLine("5. Exit Program");
+            Console.WriteLine("1. Print the list of items.");
+            Console.WriteLine("Search for a beverage by item ID");
+            Console.WriteLine("Add a new beverage");
+            Console.WriteLine("Update an existing beverage");
+            Console.WriteLine("Delete a beverage");
         }
 
         //Display the Prompt
