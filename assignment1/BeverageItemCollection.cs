@@ -9,8 +9,29 @@ using System.Threading.Tasks;
 
 namespace assignment1
 {
-    class BeverageItemCollection : IWineCollection
+    class BeverageItemCollection
     {
+        BeverageJMeachumEntities bevEntities = new BeverageJMeachumEntities();
+
+        public BeverageItemCollection() { }
+
+        public override string ToString()
+        {
+            string returnString = "";
+
+            foreach(Beverage bev in bevEntities.Beverages)
+            {
+                if (bev != null)
+                    returnString += "ID: " + bev.id + Environment.NewLine +
+                        "\t" + "Item Name: " + bev.name + "\n" +
+                        "\t" + "Item pack: " + bev.pack + Environment.NewLine +
+                        "\t" + "Item cost: " + bev.price.ToString("C") + Environment.NewLine;
+            }
+
+            return returnString;
+        }
+
+        /*
         //Private Variables
         BeverageItem[] wineItems;
         int wineItemsLength;
@@ -80,6 +101,7 @@ namespace assignment1
             //Return the returnString
             return returnString;
         }
+        */
 
     }
 }

@@ -70,7 +70,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>beverageEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="IWineCollection.cs" />
+    <Compile Include="IBeverageCollection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInterface.cs" />

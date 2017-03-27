@@ -11,7 +11,7 @@ namespace assignment1
 {
     class UserInterface
     {
-        const int maxMenuChoice = 5;
+        const int maxMenuChoice = 6;
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
@@ -19,7 +19,7 @@ namespace assignment1
         //Display Welcome Greeting
         public void DisplayWelcomeGreeting()
         {
-            Console.WriteLine("Welcome to the wine program");
+            Console.WriteLine("Welcome to the beverage program");
         }
 
         //Display Menu And Get Response
@@ -147,10 +147,11 @@ namespace assignment1
         {
             Console.WriteLine();
             Console.WriteLine("1. Print the list of items.");
-            Console.WriteLine("Search for a beverage by item ID");
-            Console.WriteLine("Add a new beverage");
-            Console.WriteLine("Update an existing beverage");
-            Console.WriteLine("Delete a beverage");
+            Console.WriteLine("2. Search for a beverage by item ID");
+            Console.WriteLine("3. Add a new beverage");
+            Console.WriteLine("4. Update an existing beverage");
+            Console.WriteLine("5. Delete a beverage");
+            Console.WriteLine("6. Exit Program");
         }
 
         //Display the Prompt
