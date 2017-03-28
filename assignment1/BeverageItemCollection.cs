@@ -11,7 +11,9 @@ namespace assignment1
 {
     class BeverageItemCollection
     {
-        BeverageJMeachumEntities bevEntities = new BeverageJMeachumEntities();
+        private BeverageJMeachumEntities bevEntities = new BeverageJMeachumEntities();
+        private Beverage searchBeverage = new Beverage();
+        private Beverage bevToAdd = new Beverage();
 
         public BeverageItemCollection() { }
 
@@ -22,86 +24,44 @@ namespace assignment1
             foreach(Beverage bev in bevEntities.Beverages)
             {
                 if (bev != null)
-                    returnString += "ID: " + bev.id + Environment.NewLine +
-                        "\t" + "Item Name: " + bev.name + "\n" +
+                    returnString += "------------------------------" + Environment.NewLine  +
+                        "ID: " + bev.id + Environment.NewLine +
+                        "\t" + "Item Name: " + bev.name + Environment.NewLine +
                         "\t" + "Item pack: " + bev.pack + Environment.NewLine +
-                        "\t" + "Item cost: " + bev.price.ToString("C") + Environment.NewLine;
+                        "\t" + "Item cost: " + bev.price.ToString("C") + Environment.NewLine + 
+                        "\t" + "Item available: " + bev.active + Environment.NewLine + Environment.NewLine;
             }
 
             return returnString;
         }
 
-        /*
-        //Private Variables
-        BeverageItem[] wineItems;
-        int wineItemsLength;
-
-        //Constuctor. Must pass the size of the collection.
-        public BeverageItemCollection(int size)
+        public Beverage SearchForItem(string userSearch)
         {
-            wineItems = new BeverageItem[size];
-            wineItemsLength = 0;
+            searchBeverage = bevEntities.Beverages.Find(userSearch);
+
+            return searchBeverage;
         }
 
-        //Add a new item to the collection
-        public void AddNewItem(string id, string description, string pack)
+        public void AddToDB(string Uid, string Uname, string Upack, decimal Uprice, bool Uactive)
         {
-            //Add a new WineItem to the collection. Increase the Length variable.
-            wineItems[wineItemsLength] = new BeverageItem(id, description, pack);
-            wineItemsLength++;
-        }
-        
-        //Get The Print String Array For All Items
-        public string[] GetPrintStringsForAllItems()
-        {
-            //Create and array to hold all of the printed strings
-            string[] allItemStrings = new string[wineItemsLength];
-            //set a counter to be used
-            int counter = 0;
+            bevToAdd.id = Uid;
+            bevToAdd.name = Uname;
+            bevToAdd.pack = Upack;
+            bevToAdd.price = Uprice;
+            bevToAdd.active = Uactive;
 
-            //If the wineItemsLength is greater than 0, create the array of strings
-            if (wineItemsLength > 0)
+            try
             {
-                //For each item in the collection
-                foreach (BeverageItem wineItem in wineItems)
-                {
-                    //if the current item is not null.
-                    if (wineItem != null)
-                    {
-                        //Add the results of calling ToString on the item to the string array.
-                        allItemStrings[counter] = wineItem.ToString();
-                        counter++;
-                    }
-                }
+                bevEntities.Beverages.Add(bevToAdd);
+
+                bevEntities.SaveChanges();
             }
-            //Return the array of item strings
-            return allItemStrings;
-        }
-
-        //Find an item by it's Id
-        public string FindById(string id)
-        {
-            //Declare return string for the possible found item
-            string returnString = null;
-
-            //For each WineItem in wineItems
-            foreach (BeverageItem wineItem in wineItems)
+            catch
             {
-                //If the wineItem is not null
-                if (wineItem != null)
-                {
-                    //if the wineItem Id is the same as the search id
-                    if (wineItem.Id == id)
-                    {
-                        //Set the return string to the result of the wineItem's ToString method
-                        returnString = wineItem.ToString();
-                    }
-                }
+                Console.WriteLine("ERROR. Entry cannot be added. ID conflict.");
+                bevEntities.Beverages.Remove(bevToAdd);
             }
-            //Return the returnString
-            return returnString;
         }
-        */
 
     }
 }

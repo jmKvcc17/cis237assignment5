@@ -16,6 +16,131 @@ namespace assignment1
         //Public Methods
         //---------------------------------------------------
 
+        // *******Assignment 5 methods*******************
+        public string IDToSearch()
+        {
+            string userID = "";
+
+            Console.WriteLine("Enter in an ID to search for: ");
+            userID = Console.ReadLine();
+
+            while (userID == string.Empty)
+            {
+                Console.WriteLine("Enter in an ID to search for: ");
+                userID = Console.ReadLine();
+            }
+
+            return userID;
+        }
+
+        public void NullError(string usrSrch)
+        {
+            Console.WriteLine($"ID: {usrSrch} not found.");
+        }
+
+        public void DisplaySearch(Beverage userBev)
+        {
+            Console.WriteLine("ID: " + userBev.id);
+            Console.WriteLine("Name: " + userBev.name);
+            Console.WriteLine("Pack: " + userBev.pack);
+            Console.WriteLine("Cost: " + userBev.price.ToString("C"));
+            Console.WriteLine("Available: " + userBev.active);
+        }
+
+        public string IDToAdd()
+        {
+            string userID = "";
+
+            Console.WriteLine("Enter in an ID to add: ");
+            userID = Console.ReadLine();
+
+            while (userID == string.Empty)
+            {
+                Console.WriteLine("Enter in an ID to add (cannot be emtpy): ");
+                userID = Console.ReadLine();
+            }
+
+            return userID;
+        }
+
+        public string NameToAdd()
+        {
+            string userName = "";
+
+            Console.WriteLine("Enter in the name to add: ");
+            userName = Console.ReadLine();
+
+            while (userName == string.Empty)
+            {
+                Console.WriteLine("Enter in the name to add (cannot be emtpy): ");
+                userName = Console.ReadLine();
+            }
+
+            return userName;
+        }
+
+        public string PackToAdd() // ***If time concat ml or lit to end
+        {
+            string userPack = "";
+
+            Console.WriteLine("Enter in the pack to add: ");
+            userPack = Console.ReadLine();
+
+            while (userPack == string.Empty)
+            {
+                Console.WriteLine("Enter in the pack to add (cannot be emtpy): ");
+                userPack = Console.ReadLine();
+            }
+
+            return userPack;
+        }
+
+        public decimal PriceToAdd()
+        {
+            decimal userPrice = 0m;
+            bool badInput = false;
+            string temp;
+
+            while (!badInput)
+            {
+                Console.WriteLine("Enter in the price: ");
+                temp = Console.ReadLine();
+                if (decimal.TryParse(temp, out userPrice))
+                {
+                    userPrice = decimal.Parse(temp);
+                    badInput = true;
+                }
+            }
+
+            return userPrice;
+        }
+
+        public bool ActiveToAdd()
+        {
+            bool isActive;
+            string temp;
+
+            Console.WriteLine("Is the product still active? (y/n)");
+            temp = Console.ReadLine();
+
+            while (temp != "y" && temp != "n")
+            {
+                Console.WriteLine("Is the product still active? (y/n)");
+                temp = Console.ReadLine();
+            }
+
+            if (temp == "y")
+                isActive = true;
+            else
+                isActive = false;
+
+
+            return isActive;
+        }
+
+
+        // **************End assignment5 methods********************************
+
         //Display Welcome Greeting
         public void DisplayWelcomeGreeting()
         {

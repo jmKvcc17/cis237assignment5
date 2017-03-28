@@ -21,23 +21,10 @@ namespace assignment1
     {
         static void Main(string[] args)
         {
-            //Set a constant for the size of the collection
-            //const int wineItemCollectionSize = 4000;
 
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
             BeverageItemCollection BevAPI = new BeverageItemCollection();
-
-            //Create an instance of the WineItemCollection class
-            //IBeverageCollection wineItemCollection = new BeverageItemCollection(wineItemCollectionSize);
-
-            //BeverageJMeachumEntities testEntities = new BeverageJMeachumEntities();
-
-           // foreach(Beverage bev in testEntities.Beverages)
-            //{
-           //     Console.WriteLine(bev.id);
-           // }
-            
 
 
             //Display the Welcome Message to the user
@@ -70,32 +57,28 @@ namespace assignment1
                         break;
 
                     case 2:
-                        //Print Entire List Of Items
-                        //string[] allItems = wineItemCollection.GetPrintStringsForAllItems();
-                        //if (allItems.Length > 0)
-                       // {
-                            //Display all of the items
-                            //userInterface.DisplayAllItems(allItems);
-                       // }
-                        //else
-                       // {
-                            //Display error message for all items
-                       //     userInterface.DisplayAllItemsError();
-                       // }
+                        string searchID = userInterface.IDToSearch();
+
+                        Console.WriteLine();
+
+                        Beverage searchBev = BevAPI.SearchForItem(searchID);
+
+                        if (searchBev == null)
+                            userInterface.NullError(searchID);
+                        else
+                        {
+                            userInterface.DisplaySearch(searchBev);
+                        }
+
                         break;
 
                     case 3:
-                        //Search For An Item
-                        string searchQuery = userInterface.GetSearchQuery();
-                        //string itemInformation = wineItemCollection.FindById(searchQuery);
-                        //if (itemInformation != null)
-                        //{
-                       //     userInterface.DisplayItemFound(itemInformation);
-                       // }
-                       // else
-                       // {
-                       //     userInterface.DisplayItemFoundError();
-                       // }
+                        BevAPI.AddToDB(userInterface.IDToAdd(), 
+                                       userInterface.NameToAdd(), 
+                                       userInterface.PackToAdd(), 
+                                       userInterface.PriceToAdd(), 
+                                       userInterface.ActiveToAdd());
+
                         break;
 
                     case 4:
