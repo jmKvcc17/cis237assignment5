@@ -25,6 +25,7 @@ namespace assignment1
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
             BeverageItemCollection BevAPI = new BeverageItemCollection();
+            Beverage searchBev;
 
 
             //Display the Welcome Message to the user
@@ -38,30 +39,17 @@ namespace assignment1
             {
                 switch (choice)
                 {
-                    case 1:
-                        Console.WriteLine(BevAPI.ToString());
-                        /*
-                        //Load the CSV File
-                        bool success = true; //csvProcessor.ImportCSV(wineItemCollection, pathToCSVFile);
-                        if (success)
-                        {
-                            //Display Success Message
-                            userInterface.DisplayImportSuccess();
-                        }
-                        else
-                        {
-                            //Display Fail Message
-                            userInterface.DisplayImportError();
-                        }
-                        */
+                    case 1:// **************IN UI
+                        Console.WriteLine(BevAPI.ToString()); // **************
+                        
                         break;
 
-                    case 2:
+                    case 2: // **************in UI
                         string searchID = userInterface.IDToSearch();
 
                         Console.WriteLine();
 
-                        Beverage searchBev = BevAPI.SearchForItem(searchID);
+                        searchBev = BevAPI.SearchForItem(searchID);
 
                         if (searchBev == null)
                             userInterface.NullError(searchID);
@@ -72,7 +60,7 @@ namespace assignment1
 
                         break;
 
-                    case 3:
+                    case 3:// **************in UI
                         BevAPI.AddToDB(userInterface.IDToAdd(), 
                                        userInterface.NameToAdd(), 
                                        userInterface.PackToAdd(), 
@@ -81,18 +69,22 @@ namespace assignment1
 
                         break;
 
-                    case 4:
-                        //Add A New Item To The List
-                        //string[] newItemInformation = userInterface.GetNewItemInformation();
-                        //if (wineItemCollection.FindById(newItemInformation[0]) == null)
-                       // {
-                       //     wineItemCollection.AddNewItem(newItemInformation[0], newItemInformation[1], newItemInformation[2]);
-                       //     userInterface.DisplayAddWineItemSuccess();
-                       // }
-                       // else
-                       // {
-                       //     userInterface.DisplayItemAlreadyExistsError();
-                       // }
+                    case 4:// **************Fix up***
+                        string updateString = "";
+                        userInterface.DisplayUpdateInfo();
+                        updateString = userInterface.IDToSearch();
+
+                        searchBev = BevAPI.SearchForItem(updateString);
+
+                        if (searchBev == null)
+                            userInterface.NullError(updateString);
+                        else
+                        {
+                            userInterface.DisplaySearch(searchBev);
+
+                            userInterface.UpdateExistItem(searchBev);
+                        }
+
                         break;
                 }
 

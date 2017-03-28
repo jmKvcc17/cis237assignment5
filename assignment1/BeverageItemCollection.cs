@@ -58,8 +58,27 @@ namespace assignment1
             }
             catch
             {
-                Console.WriteLine("ERROR. Entry cannot be added. ID conflict.");
+                Console.WriteLine("ERROR. Entry cannot be added. ID conflict."); // ********UI
                 bevEntities.Beverages.Remove(bevToAdd);
+            }
+        }
+
+        public void UpdateExistItem(Beverage updateBev)
+        {
+            Beverage updateVar = bevEntities.Beverages.Where(beverage => beverage.id == updateBev.id).First();
+
+            if (updateVar != null)
+            {
+                updateVar.name = updateBev.name;
+                updateVar.pack = updateBev.pack;
+                updateVar.price = updateBev.price;
+                updateVar.active = updateBev.active;
+
+                bevEntities.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Error"); // *******UI
             }
         }
 

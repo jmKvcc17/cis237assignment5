@@ -12,15 +12,25 @@ namespace assignment1
     class UserInterface
     {
         const int maxMenuChoice = 6;
+
+        BeverageItemCollection bevAPI = new BeverageItemCollection();
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
 
         // *******Assignment 5 methods*******************
+        public void DisplayUpdateInfo()
+        {
+            Console.WriteLine();
+            Console.WriteLine("You can update an item by entering in the ID.");
+            Console.WriteLine("You cannot update the ID.");
+        }
+
         public string IDToSearch()
         {
             string userID = "";
 
+            Console.WriteLine();
             Console.WriteLine("Enter in an ID to search for: ");
             userID = Console.ReadLine();
 
@@ -35,6 +45,7 @@ namespace assignment1
 
         public void NullError(string usrSrch)
         {
+            Console.WriteLine();
             Console.WriteLine($"ID: {usrSrch} not found.");
         }
 
@@ -138,6 +149,78 @@ namespace assignment1
             return isActive;
         }
 
+        public void UpdateExistItem(Beverage updateBev)
+        {
+            int userChoice;
+            string userString;
+
+            Console.WriteLine("What would you like to update?");
+            Console.WriteLine("1. Name");
+            Console.WriteLine("2. Pack");
+            Console.WriteLine("3. Price");
+            Console.WriteLine("4. Availability");
+
+            userString = Console.ReadLine();
+
+            while (!this.checkInput(userString))
+            {
+                Console.WriteLine("Input error. Try again.");
+                userString = Console.ReadLine();
+            }
+
+            userChoice = int.Parse(userString);
+
+            this.UpdateChoice(userChoice, updateBev);
+        }
+
+        public void UpdateChoice(int userChoice, Beverage userBev)
+        {
+            switch (userChoice)
+            {
+                case 1:
+                    string name = this.NameToAdd();
+                    userBev.name = name;
+                    break;
+                case 2:
+                    string pack = this.PackToAdd();
+                    userBev.pack = pack;
+                    break;
+                case 3:
+                    decimal price = this.PriceToAdd();
+                    userBev.price = price;
+                    break;
+                case 4:
+                    bool active = this.ActiveToAdd();
+                    userBev.active = active;
+                    break;
+            }
+
+            bevAPI.UpdateExistItem(userBev);
+
+        }
+
+        public bool checkInput(string temp)
+        {
+            bool input = false;
+            int num;
+
+            try
+            {
+                num = int.Parse(temp);
+
+                if (num > 0 && num < 5)
+                {
+                    input = true;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Input error.");
+            }
+
+            return input;
+        }
+
 
         // **************End assignment5 methods********************************
 
@@ -174,92 +257,6 @@ namespace assignment1
             }
             //Return the selection casted to an integer
             return Int32.Parse(selection);
-        }
-
-        //Get the search query from the user
-        public string GetSearchQuery()
-        {
-            Console.WriteLine();
-            Console.WriteLine("What would you like to search for?");
-            Console.Write("> ");
-            return Console.ReadLine();
-        }
-
-        //Get New Item Information From The User.
-        public string[] GetNewItemInformation()
-        {
-            Console.WriteLine();
-            Console.WriteLine("What is the new items Id?");
-            Console.Write("> ");
-            string id = Console.ReadLine();
-            Console.WriteLine("What is the new items Description?");
-            Console.Write("> ");
-            string description = Console.ReadLine();
-            Console.WriteLine("What is the new items Pack?");
-            Console.Write("> ");
-            string pack = Console.ReadLine();
-
-            return new string[] { id, description, pack };
-        }
-
-        //Display Import Success
-        public void DisplayImportSuccess()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Wine List Has Been Imported Successfully");
-        }
-
-        //Display Import Error
-        public void DisplayImportError()
-        {
-            Console.WriteLine();
-            Console.WriteLine("There was an error importing the CSV");
-        }
-
-        //Display All Items
-        public void DisplayAllItems(string[] allItemsOutput)
-        {
-            Console.WriteLine();
-            foreach (string itemOutput in allItemsOutput)
-            {
-                Console.WriteLine(itemOutput);
-            }
-        }
-
-        //Display All Items Error
-        public void DisplayAllItemsError()
-        {
-            Console.WriteLine();
-            Console.WriteLine("There are no items in the list to print");
-        }
-
-        //Display Item Found Success
-        public void DisplayItemFound(string itemInformation)
-        {
-            Console.WriteLine();
-            Console.WriteLine("Item Found!");
-            Console.WriteLine(itemInformation);
-        }
-
-        //Display Item Found Error
-        public void DisplayItemFoundError()
-        {
-            Console.WriteLine();
-            Console.WriteLine("A Match was not found");
-        }
-
-        //Display Add Wine Item Success
-        public void DisplayAddWineItemSuccess()
-        {
-            Console.WriteLine();
-            Console.WriteLine("The Item was successfully added");
-        }
-
-        //Display Item Already Exists Error
-        public void DisplayItemAlreadyExistsError()
-        {
-            Console.WriteLine();
-            Console.WriteLine("An Item With That Id Already Exists");
         }
 
 
