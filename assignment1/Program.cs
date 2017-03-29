@@ -21,12 +21,9 @@ namespace assignment1
     {
         static void Main(string[] args)
         {
-
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
             BeverageItemCollection BevAPI = new BeverageItemCollection();
-            //Beverage searchBev;
-
 
             //Display the Welcome Message to the user
             userInterface.DisplayWelcomeGreeting();
@@ -39,21 +36,23 @@ namespace assignment1
             {
                 switch (choice)
                 {
-                    case 1:// **************IN UI
+                    case 1:
+                        // Print the list of wine items
                         userInterface.PrintList();
                         break;
-                    case 2: // **************in UI
+                    case 2:
+                        // Search through the database by id
                         userInterface.SearchDB();
                         break;
-                    case 3:// **************in UI
+                    case 3:
+                        // create a new db item from the user
                         BevAPI.AddToDB(userInterface.IDToAdd(), 
                                        userInterface.NameToAdd(), 
                                        userInterface.PackToAdd(), 
                                        userInterface.PriceToAdd(), 
                                        userInterface.ActiveToAdd());
-
                         break;
-                    case 4:// **************Fix up***
+                    case 4:
                         userInterface.UpdateItem();
                         break;
                     case 5:
