@@ -14,6 +14,7 @@ namespace assignment1
         private BeverageJMeachumEntities bevEntities = new BeverageJMeachumEntities();
         private Beverage searchBeverage = new Beverage();
         private Beverage bevToAdd = new Beverage();
+        
 
         public BeverageItemCollection() { }
 
@@ -80,6 +81,23 @@ namespace assignment1
             {
                 Console.WriteLine("Error"); // *******UI
             }
+        }
+
+        public void DeleteItem(string BevID) // **********UI
+        {
+            try
+            {
+                Beverage delBev = bevEntities.Beverages.Find(BevID);
+                bevEntities.Beverages.Remove(delBev);
+                bevEntities.SaveChanges();
+                Console.WriteLine($"ID: {BevID} has been removed.");
+                Console.WriteLine();
+            }
+            catch // *****Efficiency
+            {
+                Console.WriteLine("ID does not exist. Cannot remove.");
+            }
+            
         }
 
     }

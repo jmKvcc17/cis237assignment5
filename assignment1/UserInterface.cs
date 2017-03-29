@@ -13,7 +13,8 @@ namespace assignment1
     {
         const int maxMenuChoice = 6;
 
-        BeverageItemCollection bevAPI = new BeverageItemCollection();
+        private BeverageItemCollection BevAPI = new BeverageItemCollection();
+        private Beverage searchBev;
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
@@ -195,7 +196,7 @@ namespace assignment1
                     break;
             }
 
-            bevAPI.UpdateExistItem(userBev);
+            BevAPI.UpdateExistItem(userBev);
 
         }
 
@@ -219,6 +220,54 @@ namespace assignment1
             }
 
             return input;
+        }
+
+        public void deleteItem()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Enter an ID for deletion.");
+            string userSearch = this.IDToSearch();
+
+            BevAPI.DeleteItem(userSearch);
+        }
+
+        public void PrintList()
+        {
+            Console.WriteLine(BevAPI.ToString());
+        }
+
+        public void SearchDB()
+        {
+            string searchID = this.IDToSearch();
+
+            Console.WriteLine();
+
+            searchBev = BevAPI.SearchForItem(searchID);
+
+            if (searchBev == null)
+                this.NullError(searchID);
+            else
+            {
+                this.DisplaySearch(searchBev);
+            }
+        }
+
+        public void UpdateItem()
+        {
+            string updateString = "";
+            this.DisplayUpdateInfo();
+            updateString = this.IDToSearch();
+
+            searchBev = BevAPI.SearchForItem(updateString);
+
+            if (searchBev == null)
+                this.NullError(updateString);
+            else
+            {
+                this.DisplaySearch(searchBev);
+
+                this.UpdateExistItem(searchBev);
+            }
         }
 
 

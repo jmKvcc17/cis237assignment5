@@ -25,7 +25,7 @@ namespace assignment1
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
             BeverageItemCollection BevAPI = new BeverageItemCollection();
-            Beverage searchBev;
+            //Beverage searchBev;
 
 
             //Display the Welcome Message to the user
@@ -40,26 +40,11 @@ namespace assignment1
                 switch (choice)
                 {
                     case 1:// **************IN UI
-                        Console.WriteLine(BevAPI.ToString()); // **************
-                        
+                        userInterface.PrintList();
                         break;
-
                     case 2: // **************in UI
-                        string searchID = userInterface.IDToSearch();
-
-                        Console.WriteLine();
-
-                        searchBev = BevAPI.SearchForItem(searchID);
-
-                        if (searchBev == null)
-                            userInterface.NullError(searchID);
-                        else
-                        {
-                            userInterface.DisplaySearch(searchBev);
-                        }
-
+                        userInterface.SearchDB();
                         break;
-
                     case 3:// **************in UI
                         BevAPI.AddToDB(userInterface.IDToAdd(), 
                                        userInterface.NameToAdd(), 
@@ -68,23 +53,11 @@ namespace assignment1
                                        userInterface.ActiveToAdd());
 
                         break;
-
                     case 4:// **************Fix up***
-                        string updateString = "";
-                        userInterface.DisplayUpdateInfo();
-                        updateString = userInterface.IDToSearch();
-
-                        searchBev = BevAPI.SearchForItem(updateString);
-
-                        if (searchBev == null)
-                            userInterface.NullError(updateString);
-                        else
-                        {
-                            userInterface.DisplaySearch(searchBev);
-
-                            userInterface.UpdateExistItem(searchBev);
-                        }
-
+                        userInterface.UpdateItem();
+                        break;
+                    case 5:
+                        userInterface.deleteItem();
                         break;
                 }
 
