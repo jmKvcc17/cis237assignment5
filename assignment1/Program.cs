@@ -23,7 +23,6 @@ namespace assignment1
         {
             //Create an instance of the UserInterface class
             UserInterface userInterface = new UserInterface();
-            BeverageItemCollection BevAPI = new BeverageItemCollection();
 
             //Display the Welcome Message to the user
             userInterface.DisplayWelcomeGreeting();
@@ -45,17 +44,15 @@ namespace assignment1
                         userInterface.SearchDB();
                         break;
                     case 3:
-                        // create a new db item from the user
-                        BevAPI.AddToDB(userInterface.IDToAdd(), 
-                                       userInterface.NameToAdd(), 
-                                       userInterface.PackToAdd(), 
-                                       userInterface.PriceToAdd(), 
-                                       userInterface.ActiveToAdd());
+                        // Add an item to the database
+                        userInterface.AddItem();
                         break;
                     case 4:
+                        // Updates an existing in the database
                         userInterface.UpdateItem();
                         break;
                     case 5:
+                        // Delete any item in the database
                         userInterface.deleteItem();
                         break;
                 }

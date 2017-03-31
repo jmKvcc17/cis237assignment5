@@ -13,13 +13,14 @@ namespace assignment1
     {
         const int maxMenuChoice = 6;
 
-        private BeverageItemCollection BevAPI = new BeverageItemCollection();
+        private BeverageItemCollection BevAPI = new BeverageItemCollection(); // API object to interact with the database
         private Beverage searchBev;
         //---------------------------------------------------
         //Public Methods
         //---------------------------------------------------
 
         // *******Assignment 5 methods*******************
+        // Displays instructions to update the database
         public void DisplayUpdateInfo()
         {
             Console.WriteLine();
@@ -27,6 +28,7 @@ namespace assignment1
             Console.WriteLine("You cannot update the ID.");
         }
 
+        // Allows the user to enter in a string to search for
         public string IDToSearch()
         {
             string userID = "";
@@ -44,12 +46,14 @@ namespace assignment1
             return userID;
         }
 
+        // Displays error when the database is null
         public void NullError(string usrSrch)
         {
             Console.WriteLine();
             Console.WriteLine($"ID: {usrSrch} not found.");
         }
 
+        // Displays the beverage info the user searched for
         public void DisplaySearch(Beverage userBev)
         {
             Console.WriteLine("ID: " + userBev.id);
@@ -59,6 +63,7 @@ namespace assignment1
             Console.WriteLine("Available: " + userBev.active);
         }
 
+        //Gets the id to add to the database
         public string IDToAdd()
         {
             string userID = "";
@@ -75,6 +80,7 @@ namespace assignment1
             return userID;
         }
 
+        // Name to add to the databse
         public string NameToAdd()
         {
             string userName = "";
@@ -91,6 +97,7 @@ namespace assignment1
             return userName;
         }
 
+        // Gets the pack to add to the database
         public string PackToAdd() // ***If time concat ml or lit to end
         {
             string userPack = "";
@@ -107,6 +114,7 @@ namespace assignment1
             return userPack;
         }
 
+        // Gets the price to add to the database
         public decimal PriceToAdd()
         {
             decimal userPrice = 0m;
@@ -127,6 +135,8 @@ namespace assignment1
             return userPrice;
         }
 
+        // Asks the user if the product 
+        // Is still active
         public bool ActiveToAdd()
         {
             bool isActive;
@@ -135,6 +145,7 @@ namespace assignment1
             Console.WriteLine("Is the product still active? (y/n)");
             temp = Console.ReadLine();
 
+            // While the the choice isn't y or n
             while (temp != "y" && temp != "n")
             {
                 Console.WriteLine("Is the product still active? (y/n)");
@@ -150,6 +161,30 @@ namespace assignment1
             return isActive;
         }
 
+        // **************UPDATING
+        // Get the update string, check to make sure
+        // it exists, then pass the object to UpdateExistItem
+        public void UpdateItem()
+        {
+            string updateString = "";
+            this.DisplayUpdateInfo();
+            updateString = this.IDToSearch();
+
+            searchBev = BevAPI.SearchForItem(updateString);
+
+            // If the item is null, the item does not exist
+            if (searchBev == null)
+                this.NullError(updateString);
+            else
+            {
+                // Display the item, then pass it
+                this.DisplaySearch(searchBev);
+
+                this.UpdateExistItem(searchBev);
+            }
+        }
+
+        // Displays update informatoin, gets the ID to search for
         public void UpdateExistItem(Beverage updateBev)
         {
             int userChoice;
@@ -163,22 +198,28 @@ namespace assignment1
 
             userString = Console.ReadLine();
 
+            // The input is bad, loop until it is correct
             while (!this.checkInput(userString))
             {
                 Console.WriteLine("Input error. Try again.");
                 userString = Console.ReadLine();
             }
 
-            userChoice = int.Parse(userString);
+            userChoice = int.Parse(userString); 
 
+            // Pass the userChoice and beverage var to UpdateChoice
             this.UpdateChoice(userChoice, updateBev);
         }
 
-        public void UpdateChoice(int userChoice, Beverage userBev)
+        // Ges the name, pack, price and availability and adds
+        // it the userBev, then passes userBev to BevAPI
+        public void UpdateChoice(int userChoice, Beverage userBev) // ******* Looop
         {
             switch (userChoice)
             {
+                // If userChoice is...
                 case 1:
+                    // Update the name, add the name to userBev
                     string name = this.NameToAdd();
                     userBev.name = name;
                     break;
@@ -196,10 +237,14 @@ namespace assignment1
                     break;
             }
 
+            // Once all the changes have been made, add the item to 
+            // UpdateExistItem
             BevAPI.UpdateExistItem(userBev);
 
         }
 
+        // Checks the input of the update function
+        // to make sure it is correct
         public bool checkInput(string temp)
         {
             bool input = false;
@@ -222,6 +267,9 @@ namespace assignment1
             return input;
         }
 
+        // Displays deletion instructions, 
+        // gets the ID to delete and sends it to
+        // DeleteItem
         public void deleteItem()
         {
             Console.WriteLine();
@@ -231,19 +279,26 @@ namespace assignment1
             BevAPI.DeleteItem(userSearch);
         }
 
+        // Prints the entire database list
         public void PrintList()
         {
             Console.WriteLine(BevAPI.ToString());
         }
 
+        // All the user to search through the database
         public void SearchDB()
         {
+            // Get the ID to search for
             string searchID = this.IDToSearch();
 
             Console.WriteLine();
 
+            // Search function in BevAPI returns 
+            // the found Beverage
             searchBev = BevAPI.SearchForItem(searchID);
 
+            // if it is null the search failed, 
+            // else display the serach information
             if (searchBev == null)
                 this.NullError(searchID);
             else
@@ -252,22 +307,14 @@ namespace assignment1
             }
         }
 
-        public void UpdateItem()
+        // Adds the item to the database
+        public void AddItem()
         {
-            string updateString = "";
-            this.DisplayUpdateInfo();
-            updateString = this.IDToSearch();
-
-            searchBev = BevAPI.SearchForItem(updateString);
-
-            if (searchBev == null)
-                this.NullError(updateString);
-            else
-            {
-                this.DisplaySearch(searchBev);
-
-                this.UpdateExistItem(searchBev);
-            }
+            BevAPI.AddToDB(this.IDToAdd(),
+                                       this.NameToAdd(),
+                                       this.PackToAdd(),
+                                       this.PriceToAdd(),
+                                       this.ActiveToAdd());
         }
 
 

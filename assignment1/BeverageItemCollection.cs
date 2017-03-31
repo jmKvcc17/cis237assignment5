@@ -25,7 +25,7 @@ namespace assignment1
             foreach(Beverage bev in bevEntities.Beverages)
             {
                 if (bev != null)
-                    returnString += "------------------------------" + Environment.NewLine  +
+                    returnString += "-----------------------------------" + Environment.NewLine  +
                         "ID: " + bev.id + Environment.NewLine +
                         "\t" + "Item Name: " + bev.name + Environment.NewLine +
                         "\t" + "Item pack: " + bev.pack + Environment.NewLine +
