@@ -35,6 +35,7 @@ namespace assignment1
 
             Console.WriteLine();
             Console.WriteLine("Enter in an ID to search for: ");
+            displayArrow();
             userID = Console.ReadLine();
 
             while (userID == string.Empty)
@@ -70,11 +71,13 @@ namespace assignment1
             string userID = "";
 
             Console.WriteLine("Enter in an ID to add: ");
+            displayArrow();
             userID = Console.ReadLine();
 
             while (userID == string.Empty)
             {
                 Console.WriteLine("Enter in an ID to add (cannot be emtpy): ");
+                displayArrow();
                 userID = Console.ReadLine();
             }
 
@@ -87,11 +90,13 @@ namespace assignment1
             string userName = "";
 
             Console.WriteLine("Enter in the name to add: ");
+            displayArrow();
             userName = Console.ReadLine();
 
             while (userName == string.Empty)
             {
                 Console.WriteLine("Enter in the name to add (cannot be emtpy): ");
+                displayArrow();
                 userName = Console.ReadLine();
             }
 
@@ -104,11 +109,13 @@ namespace assignment1
             string userPack = "";
 
             Console.WriteLine("Enter in the pack to add: ");
+            displayArrow();
             userPack = Console.ReadLine();
 
             while (userPack == string.Empty)
             {
                 Console.WriteLine("Enter in the pack to add (cannot be emtpy): ");
+                displayArrow();
                 userPack = Console.ReadLine();
             }
 
@@ -125,6 +132,7 @@ namespace assignment1
             while (!badInput)
             {
                 Console.WriteLine("Enter in the price: ");
+                displayArrow();
                 temp = Console.ReadLine();
                 if (decimal.TryParse(temp, out userPrice))
                 {
@@ -144,12 +152,14 @@ namespace assignment1
             string temp;
 
             Console.WriteLine("Is the product still active? (y/n)");
+            displayArrow();
             temp = Console.ReadLine();
 
             // While the the choice isn't y or n
             while (temp != "y" && temp != "n")
             {
                 Console.WriteLine("Is the product still active? (y/n)");
+                displayArrow();
                 temp = Console.ReadLine();
             }
 
@@ -198,6 +208,7 @@ namespace assignment1
             Console.WriteLine("2. Pack");
             Console.WriteLine("3. Price");
             Console.WriteLine("4. Availability");
+            displayArrow();
 
             userString = Console.ReadLine();
 
@@ -205,6 +216,7 @@ namespace assignment1
             while (!this.checkInput(userString))
             {
                 Console.WriteLine("Input error. Try again.");
+                displayArrow();
                 userString = Console.ReadLine();
             }
 
@@ -258,6 +270,7 @@ namespace assignment1
             {
                 num = int.Parse(temp);
 
+                // if the number is between 1-4
                 if (num > 0 && num < 5)
                 {
                     input = true;
@@ -278,6 +291,7 @@ namespace assignment1
         {
             Console.WriteLine();
             Console.WriteLine("Enter an ID for deletion.");
+            displayArrow();
             string userSearch = this.IDToSearch();
 
             BevAPI.DeleteItem(userSearch);
@@ -353,6 +367,11 @@ namespace assignment1
             Console.WriteLine("**********************");
         }
 
+        static private void displayArrow()
+        {
+            Console.Write(">");
+        }
+
 
         // **************End assignment5 methods********************************
 
@@ -371,6 +390,7 @@ namespace assignment1
             //Display menu, and prompt
             this.displayMenu();
             this.displayPrompt();
+            displayArrow();
 
             //Get the selection they enter
             selection = this.getSelection();
@@ -383,6 +403,7 @@ namespace assignment1
 
                 //display the prompt again
                 this.displayPrompt();
+                displayArrow();
 
                 //get the selection again
                 selection = this.getSelection();
@@ -412,7 +433,7 @@ namespace assignment1
         private void displayPrompt()
         {
             Console.WriteLine();
-            Console.Write("Enter Your Choice: ");
+            Console.WriteLine("Enter Your Choice: ");
         }
 
         //Display the Error Message
