@@ -3,7 +3,7 @@
 ## Due 04-03-2017
 
 ## Author
-
+Jesse Meachum
 ## Description
 
 Either modify what I have in my Asignment1 key, which is included here, or bring in your files and use that to do the work.
@@ -59,7 +59,8 @@ Solution Requirements:
 * UI Class to handle I/O
 
 ### Notes
-
+Connecting to the database was time consuming, 
+no other issues came up
 
 
 ## Grading
@@ -80,5 +81,7 @@ Solution Requirements:
 | Total                                   | 100    |
 
 ## Outside Resources Used
-
+Class book, inclass 5
 ## Known Problems, Issues, And/Or Errors in the Program
+Database had errors with beverage index, had to rebuild, name property in database must
+have a newline character at the end of it

@@ -1,4 +1,6 @@
 ﻿//Author: David Barnes
+// Updated By: Jesse Meachum
+// Update Date: 3/31/2017
 //CIS 237
 //Assignment 1
 /*

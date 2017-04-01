@@ -58,10 +58,10 @@ namespace assignment1
         public void DisplaySearch(Beverage userBev)
         {
             Console.WriteLine("ID: " + userBev.id);
-            Console.WriteLine("Name: " + userBev.name);
-            Console.WriteLine("Pack: " + userBev.pack);
-            Console.WriteLine("Cost: " + userBev.price.ToString("C"));
-            Console.WriteLine("Available: " + userBev.active);
+            Console.WriteLine("\tName: " + userBev.name);
+            Console.WriteLine("\tPack: " + userBev.pack);
+            Console.WriteLine("\tCost: " + userBev.price.ToString("C"));
+            Console.WriteLine("\tAvailable: " + userBev.active);
             DisplayDashes();
         }
 
@@ -364,7 +364,7 @@ namespace assignment1
 
         static private void DisplayDashes()
         {
-            Console.WriteLine("**********************");
+            Console.WriteLine("***********************************");
         }
 
         static private void displayArrow()
