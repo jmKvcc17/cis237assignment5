@@ -61,6 +61,7 @@ namespace assignment1
             Console.WriteLine("Pack: " + userBev.pack);
             Console.WriteLine("Cost: " + userBev.price.ToString("C"));
             Console.WriteLine("Available: " + userBev.active);
+            DisplayDashes();
         }
 
         //Gets the id to add to the database
@@ -178,6 +179,7 @@ namespace assignment1
             else
             {
                 // Display the item, then pass it
+                Console.WriteLine();
                 this.DisplaySearch(searchBev);
 
                 this.UpdateExistItem(searchBev);
@@ -190,6 +192,7 @@ namespace assignment1
             int userChoice;
             string userString;
 
+            Console.WriteLine();
             Console.WriteLine("What would you like to update?");
             Console.WriteLine("1. Name");
             Console.WriteLine("2. Pack");
@@ -240,6 +243,7 @@ namespace assignment1
             // Once all the changes have been made, add the item to 
             // UpdateExistItem
             BevAPI.UpdateExistItem(userBev);
+            DisplayDashes();
 
         }
 
@@ -277,12 +281,14 @@ namespace assignment1
             string userSearch = this.IDToSearch();
 
             BevAPI.DeleteItem(userSearch);
+            DisplayDashes();
         }
 
         // Prints the entire database list
         public void PrintList()
         {
             Console.WriteLine(BevAPI.ToString());
+            DisplayDashes();
         }
 
         // All the user to search through the database
@@ -315,6 +321,36 @@ namespace assignment1
                                        this.PackToAdd(),
                                        this.PriceToAdd(),
                                        this.ActiveToAdd());
+
+            DisplayDashes();
+        }
+
+        // STATIC METHODS**********
+        static public void DisplayDeletedItem(string uID)
+        {
+            Console.WriteLine($"ID: {uID} has been removed.");
+            Console.WriteLine();
+        }
+
+        static public void DisplayDeleteError()
+        {
+            Console.WriteLine("ID does not exist. Cannot remove.");
+        }
+
+        static public void DisplayUpdateError()
+        {
+            Console.WriteLine("Error. Item cannot be added.");
+            Console.WriteLine("Item may be null");
+        }
+
+        static public void DisplayAddError()
+        {
+            Console.WriteLine("ERROR. Item cannot be added.");
+        }
+
+        static private void DisplayDashes()
+        {
+            Console.WriteLine("**********************");
         }
 
 
