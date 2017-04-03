@@ -58,7 +58,7 @@ namespace assignment1
         public void DisplaySearch(Beverage userBev)
         {
             Console.WriteLine("ID: " + userBev.id);
-            Console.WriteLine("\tName: " + userBev.name);
+            Console.WriteLine("\tName: " + userBev.name.Trim());
             Console.WriteLine("\tPack: " + userBev.pack);
             Console.WriteLine("\tCost: " + userBev.price.ToString("C"));
             Console.WriteLine("\tAvailable: " + userBev.active);
