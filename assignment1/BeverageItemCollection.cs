@@ -27,7 +27,7 @@ namespace assignment1
                 if (bev != null)
                     returnString += "-----------------------------------" + Environment.NewLine  +
                         "ID: " + bev.id + Environment.NewLine +
-                        "\t" + "Item Name: " + bev.name + Environment.NewLine +
+                        "\t" + "Item Name: " + bev.name.Trim() + Environment.NewLine +
                         "\t" + "Item pack: " + bev.pack + Environment.NewLine +
                         "\t" + "Item cost: " + bev.price.ToString("C") + Environment.NewLine + 
                         "\t" + "Item available: " + bev.active + Environment.NewLine + Environment.NewLine;
