@@ -101,6 +101,7 @@ namespace assignment1
                 bevEntities.SaveChanges();
                 UserInterface.DisplayDeletedItem(BevID);
             }
+            // If there's an error, display message
             catch
             {
                 UserInterface.DisplayDeleteError();

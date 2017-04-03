@@ -340,33 +340,41 @@ namespace assignment1
         }
 
         // STATIC METHODS**********
+        // Error methods
+
+        // Displays when a product has been removed
         static public void DisplayDeletedItem(string uID)
         {
             Console.WriteLine($"ID: {uID} has been removed.");
             Console.WriteLine();
         }
 
+        // Displays when a searched ID cannot be removed
         static public void DisplayDeleteError()
         {
             Console.WriteLine("ID does not exist. Cannot remove.");
         }
 
+        // Displays error when an item cannot be added
         static public void DisplayUpdateError()
         {
             Console.WriteLine("Error. Item cannot be added.");
             Console.WriteLine("Item may be null");
         }
 
+        // Displays when an item cannot be added
         static public void DisplayAddError()
         {
             Console.WriteLine("ERROR. Item cannot be added.");
         }
 
+        // Displays astericks for neatness
         static private void DisplayDashes()
         {
             Console.WriteLine("***********************************");
         }
 
+        // Displays an arrow to show where input is
         static private void displayArrow()
         {
             Console.Write(">");
